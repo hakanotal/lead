@@ -18,5 +18,7 @@
 #### Dev Setup
 
 > cd db && redis-server
+
 > cd back && cargo run
+
 > cd front && pnpm dev
