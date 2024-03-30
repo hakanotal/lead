@@ -10,7 +10,7 @@ struct MyWs;
 
 impl MyWs {
     fn send_leaderboard_data(ctx: &mut <MyWs as Actor>::Context) {
-        let leaderboard_data = redis_adapter::get_leaderboard(0, 5); // TODO: fix ws subscription
+        let leaderboard_data = redis_adapter::get_leaderboard(0, 5);
         // println!("LEADERBOARD:");
         // println!("{}", leaderboard_data);
         ctx.text(leaderboard_data);

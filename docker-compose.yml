@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  backend:
+    image: rust:latest
+    volumes:
+      - ./back:/usr/src/lead
+    working_dir: /usr/src/lead
+    command: bash -c "cargo build --release && ./target/release/lead"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOSTNAME=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=redis
+
+  frontend:
+    image: node:18
+    volumes:
+      - ./front:/app
+    working_dir: /app
+    command: bash -c "npm install -g pnpm && pnpm install && pnpm dev"
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - redis:/data
+
+volumes:
+  redis:
+    driver: local
