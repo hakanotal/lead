@@ -2,23 +2,33 @@
 
 ## Front
 
-- Vite + pnpm
-- Solid JS
-- Tailwind CSS
+- [Vite](https://vitejs.dev/) + [pnpm](https://pnpm.io/)
+- [Solid JS](https://www.solidjs.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Back
 
-- Rust
-- Actix
+- [Rust](https://www.rust-lang.org/)
+- [Actix](https://actix.rs/)
 
 ## DB
 
-- Redis
+- [Redis](https://redis.io/)
 
-#### Dev Setup
+## Load Test
 
-> cd db && redis-server
+- [Locust](https://locust.io/)
 
-> cd back && cargo run
+#### Dev. Env. Setup
 
-> cd front && pnpm dev
+> cd db
+> redis-server
+
+> cd back
+> cargo run
+
+> cd front
+> pnpm dev
+
+> cd test
+> locust -f locustfile.py -H http://127.0.0.1:8080
